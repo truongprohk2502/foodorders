@@ -1,0 +1,175 @@
+<header class="htc__header bg--white">
+    <!-- Start Mainmenu Area -->
+    <div id="sticky-header-with-topbar" class="mainmenu__wrap sticky__header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-sm-4 col-md-6 order-1 order-lg-1">
+                    <div class="logo">
+                        <a href="/home">
+                            <img th:src="@{/resource/images/logo/foody.png}" alt="logo images">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-sm-4 col-md-2 order-3 order-lg-2">
+                    <div class="main__menu__wrap">
+                        <nav class="main__menu__nav d-none d-lg-block">
+                            <ul class="mainmenu">
+                                <li class="drop"><a href="/home">Home</a></li>
+                                <li><a href="#">About</a></li>
+                                <li class="drop"><a href="menu-list.html">Menu</a>
+                                    <ul class="dropdown__menu">
+                                        <li><a href="menu-list.html">Menu List</a></li>
+                                        <li><a href="menu-details.html">Menu Details</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="gallery.html">Gallery</a></li>
+                                <li class="drop"><a href="blog-mesonry.html">Blog</a>
+                                    <ul class="dropdown__menu">
+                                        <li><a href="blog-mesonry.html">Blog Mesonry</a></li>
+                                        <li><a href="blog-details.html">Blog Details</a></li>
+                                    </ul>
+                                </li>
+                                <li class="drop"><a href="#">Pages</a>
+                                    <ul class="dropdown__menu">
+                                        <li><a href="service.html">Service</a></li>
+                                        <li><a href="cart.html">Cart Page</a></li>
+                                        <li><a href="checkout.html">Checkout Page</a></li>
+                                        <li><a href="contact.html">Contact Page</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </nav>
+
+                    </div>
+                </div>
+                <div class="col-lg-1 col-sm-4 col-md-4 order-2 order-lg-3">
+                    <div class="header__right d-flex justify-content-end">
+                        <div class="log__in">
+                            <a sec:authorize="isAnonymous()" class="accountbox-trigger" href="#"><i class="zmdi zmdi-account-o"></i></a>
+                            <a sec:authorize="isAuthenticated()" href="/logout"><i class="zmdi zmdi-sign-in"></i></a>
+                        </div>
+                        <div class="shopping__cart">
+                            <a class="minicart-trigger" href="#"><i class="zmdi zmdi-shopping-basket"></i></a>
+                            <div class="shop__qun">
+                                <span id="cartSize" th:text="${cart.getSize()}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="mobile-menu d-block d-lg-none"></div>
+            <!-- Mobile Menu -->
+        </div>
+    </div>
+    <!-- End Mainmenu Area -->
+</header>
+
+<!-- Login Form -->
+<div class="accountbox-wrapper">
+    <div class="accountbox text-left">
+        <ul class="nav accountbox__filters" id="myTab" role="tablist">
+            <li>
+                <a class="active" id="log-tab" data-toggle="tab" href="#log" role="tab" aria-controls="log" aria-selected="true">Login</a>
+            </li>
+            <li>
+                <a id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Register</a>
+            </li>
+        </ul>
+        <div class="accountbox__inner tab-content" id="myTabContent">
+            <div class="accountbox__login tab-pane fade show active" id="log" role="tabpanel" aria-labelledby="log-tab">
+                <form onsubmit="return login()">
+                    <div class="single-input">
+                        <input name="username" id="username" class="cr-round--lg" type="text" placeholder="Username" required>
+                    </div>
+                    <div class="register-error" id="l-username-error"></div>
+                    <div class="single-input">
+                        <input name="password" id="password" class="cr-round--lg" type="password" placeholder="Password" required>
+                    </div>
+                    <div class="register-error" id="l-pass-error"></div>
+                    <div class="single-input">
+                        <button type="submit" class="food__btn"><span>Go</span></button>
+                    </div>
+                    <div class="accountbox-login__others">
+                        <h6>Or login with</h6>
+                        <div class="social-icons">
+                            <ul>
+                                <li class="facebook"><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                                <li class="twitter"><a href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+                                <li class="pinterest"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="accountbox__register tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <form onsubmit="return register()">
+                    <div class="single-input">
+                        <input class="cr-round--lg" id="r-username" type="text" placeholder="User name" required>
+                    </div>
+                    <div class="register-error" id="username-error"></div>
+                    <div class="single-input">
+                        <input class="cr-round--lg" id="r-pass" type="password" placeholder="Password" required>
+                    </div>
+                    <div class="register-error" id="pass-error"></div>
+                    <div class="single-input">
+                        <input class="cr-round--lg" id="r-cpass" type="password" placeholder="Confirm password" required>
+                    </div>
+                    <div class="single-input">
+                        <button type="submit" class="food__btn"><span>Sign Up</span></button>
+                    </div>
+                </form>
+            </div>
+            <span class="accountbox-close-button"><i class="zmdi zmdi-close"></i></span>
+        </div>
+    </div>
+</div><!-- //Login Form -->
+<!-- Cartbox -->
+<div class="cartbox-wrap">
+    <div class="cartbox text-right">
+        <button class="cartbox-close"><i class="zmdi zmdi-close"></i></button>
+        <div class="cartbox__inner text-left">
+            <div class="cartbox__items">
+                <th:block th:each="food : ${cart.getFoods()}">
+                    <!-- Cartbox Single Item -->
+                    <div th:id="'cart' + ${food.id}">
+                        <div class="cartbox__item">
+                            <div class="cartbox__item__thumb">
+                                <a href="product-details.html">
+                                    <img th:src="${food.image}" alt="small thumbnail">
+                                </a>
+                            </div>
+                            <div class="cartbox__item__content">
+                                <h5><a href="product-details.html" th:text="${food.name}" class="product-name"></a></h5>
+                                <p>Qty: <span th:text="${food.qty}"></span></p>
+                                <span class="price" th:text="'$' + ${food.price}"></span>
+                            </div>
+                            <button th:onclick="'removeCart(' + ${food.id} + ')'" class="cartbox__item__remove">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- //Cartbox Single Item -->
+                </th:block>
+            </div>
+            <div class="cartbox__total">
+                <ul>
+                    <li>
+                        <span class="cartbox__total__title">Subtotal</span>
+                        <span th:text="'$' + ${cart.getSubTotal()}" class="price"></span>
+                    </li>
+                    <li class="shipping-charge">
+                        <span class="cartbox__total__title">Shipping Charge</span>
+                        <span th:text="'$' + ${cart.shippingFee}" class="price"></span>
+                    </li>
+                    <li class="grandtotal">Total<span th:text="'$' + ${cart.getTotal()}" class="price"></span></li>
+                </ul>
+            </div>
+            <div class="cartbox__buttons">
+                <a class="food__btn" href="cart.html"><span>View cart</span></a>
+                <a class="food__btn" href="checkout.html"><span>Checkout</span></a>
+            </div>
+        </div>
+    </div>
+</div><!-- //Cartbox -->

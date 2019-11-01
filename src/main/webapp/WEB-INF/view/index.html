@@ -1,0 +1,718 @@
+<!doctype html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Aahar - Food Delivery</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" th:href="@{/resource/images/favicon.ico}">
+    <link rel="apple-touch-icon" th:href="@{/resource/images/icon.png}">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" th:href="@{/resource/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/resource/css/plugins.css}">
+    <link rel="stylesheet" th:href="@{/resource/style.css}">
+
+    <!-- Cusom css -->
+    <link rel="stylesheet" th:href="@{/resource/css/custom.css}">
+
+    <!-- Modernizer js -->
+    <script th:src="@{/resource/js/vendor/modernizr-3.5.0.min.js}"></script>
+
+    <!-- Toastr css -->
+    <link rel="stylesheet" th:href="@{/resource/css/toastr.css}">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+
+<!-- <div class="fakeloader"></div> -->
+
+<!-- Main wrapper -->
+<div class="wrapper" id="wrapper">
+    <!-- Start Header Area -->
+    <th:block th:replace="/template/header"></th:block>
+    <!-- End Header Area -->
+    <!-- Start Slider Area -->
+    <div class="slider__area slider--one">
+        <div class="slider__activation--1">
+            <!-- Start Single Slide -->
+            <div class="slide fullscreen bg-image--1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="slider__content">
+                                <div class="slider__inner">
+                                    <h2>“AAHAR”</h2>
+                                    <h1>food delivery & service</h1>
+                                    <div class="slider__input">
+                                        <input type="text" placeholder="Type Place, City.Division">
+                                        <input class="res__search" type="text" placeholder="Restaurant">
+                                        <div class="src__btn">
+                                            <a href="#">Search</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Single Slide -->
+        </div>
+    </div>
+    <!-- End Slider Area -->
+    <!-- Start Service Area -->
+    <section class="fd__service__area bg-image--2 section-padding--xlg">
+        <div class="container">
+            <div class="service__wrapper bg--white">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="section__title service__align--left">
+                            <p>The process of our service</p>
+                            <h2 class="title__line">How it work</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt--30">
+                    <!-- Start Single Service -->
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="service">
+                            <div class="service__title">
+                                <div class="ser__icon">
+                                    <img th:src="@{/resource/images/icon/color-icon/1.png}" alt="icon image">
+                                </div>
+                                <h2><a href="service.html">Choose restaurant</a></h2>
+                            </div>
+                            <div class="service__details">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Service -->
+                    <!-- Start Single Service -->
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="service">
+                            <div class="service__title">
+                                <div class="ser__icon">
+                                    <img th:src="@{/resource/images/icon/color-icon/2.png}" alt="icon image">
+                                </div>
+                                <h2><a href="service.html">Select, you love to eat</a></h2>
+                            </div>
+                            <div class="service__details">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Service -->
+                    <!-- Start Single Service -->
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="service">
+                            <div class="service__title">
+                                <div class="ser__icon">
+                                    <img th:src="@{/resource/images/icon/color-icon/3.png}" alt="icon image">
+                                </div>
+                                <h2><a href="service.html">Pickup or delivery</a></h2>
+                            </div>
+                            <div class="service__details">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Service Area -->
+    <!-- Start Food Category -->
+    <section class="food__category__area bg--white section-padding--lg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="section__title service__align--left">
+                        <p>the process of our service</p>
+                        <h2 class="title__line">Search by food category</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="food__category__wrapper mt--40">
+                <div class="row">
+                    <!-- Start Single Category -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="food__item foo">
+                            <div class="food__thumb">
+                                <a href="menu-details.html">
+                                    <img th:src="@{/resource/images/download/breakfast.jpg}" alt="product images">
+                                </a>
+                            </div>
+                            <div class="food__title">
+                                <h2><a href="menu-details.html">Breakfast Iteam</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Category -->
+                    <!-- Start Single Category -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="food__item foo">
+                            <div class="food__thumb">
+                                <a href="menu-details.html">
+                                    <img th:src="@{/resource/images/download/lunch.jpg}" alt="product images">
+                                </a>
+                            </div>
+                            <div class="food__title">
+                                <h2><a href="menu-details.html">Lunch Iteam</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Category -->
+                    <!-- Start Single Category -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="food__item foo">
+                            <div class="food__thumb">
+                                <a href="menu-details.html">
+                                    <img th:src="@{/resource/images/download/dinner.jpg}" alt="product images">
+                                </a>
+                            </div>
+                            <div class="food__title">
+                                <h2><a href="menu-details.html">Dinner Iteam</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Category -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Food Category -->
+    <!-- Start Special Menu -->
+    <section class="fd__special__menu__area section-pt--lg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="section__title service__align--left">
+                        <p>the process of our service </p>
+                        <h2 class="title__line">Restaurant with Special Menu</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="special__food__menu mt--80">
+            <div class="food__menu__prl bg-image--4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="food__nav nav nav-tabs" role="tablist">
+                                <a class="active" id="nav-all-tab" data-toggle="tab" href="#nav-all" role="tab">All</a>
+                                <a id="nav-breakfast-tab" data-toggle="tab" href="#nav-breakfast" role="tab">Breakfast</a>
+                                <a id="nav-lunch-tab" data-toggle="tab" href="#nav-lunch" role="tab">Lunch</a>
+                                <a id="nav-dinner-tab" data-toggle="tab" href="#nav-dinner" role="tab">Dinner</a>
+                                <a id="nav-coffee-tab" data-toggle="tab" href="#nav-coffee" role="tab">Coffee</a>
+                                <a id="nav-snacks-tab" data-toggle="tab" href="#nav-snacks" role="tab">Snacks</a>
+                            </div>
+                            <div class="fd__tab__content tab-content" id="nav-tabContent">
+                                <!-- Start Single tab -->
+                                <div class="single__tab__panel tab-pane fade show active" id="nav-all" role="tabpanel">
+                                    <div class="tab__content__wrap">
+                                        <!-- Start Single Tab Content -->
+                                        <div class="single__tab__content">
+                                            <th:block th:each="food : ${allFoods1}">
+                                                <!-- Start Single Food -->
+                                                <div class="food__menu">
+                                                    <div class="food__menu__thumb">
+                                                        <a th:href="@{/detail/__${food.id}__}">
+                                                            <img class="thumbnail-img" th:src="${food.image}" alt="product images">
+                                                        </a>
+                                                    </div>
+                                                    <div class="food__menu__details">
+                                                        <div class="fd__menu__title__prize">
+                                                            <h4><a th:href="@{/detail/__${food.id}__}" th:text="${food.name}"></a></h4>
+                                                            <span class="menu__prize" th:text="'$' + ${food.price}"></span>
+                                                        </div>
+                                                        <div class="fd__menu__details">
+                                                            <p th:text="'Food Type : ' + ${food.category}"></p>
+                                                            <div class="delivery__time__rating">
+                                                                <p>Delivery Time : 60 min, Delivery Cost : Free</p>
+                                                                <ul class="fd__rating">
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li class="rating__opasity"><i class="zmdi zmdi-star"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Single Food -->
+                                            </th:block>
+                                        </div>
+                                        <!-- End Single Tab Content -->
+                                        <!-- Start Single Tab Content -->
+                                        <div class="single__tab__content">
+                                            <th:block th:each="food : ${allFoods2}">
+                                                <!-- Start Single Food -->
+                                                <div class="food__menu">
+                                                    <div class="food__menu__thumb">
+                                                        <a th:href="@{/detail/__${food.id}__}">
+                                                            <img class="thumbnail-img" th:src="${food.image}" alt="product images">
+                                                        </a>
+                                                    </div>
+                                                    <div class="food__menu__details">
+                                                        <div class="fd__menu__title__prize">
+                                                            <h4><a th:href="@{/detail/__${food.id}__}" th:text="${food.name}"></a></h4>
+                                                            <span class="menu__prize" th:text="'$' + ${food.price}"></span>
+                                                        </div>
+                                                        <div class="fd__menu__details">
+                                                            <p th:text="'Food Type : ' + ${food.category}"></p>
+                                                            <div class="delivery__time__rating">
+                                                                <p>Delivery Time : 60 min, Delivery Cost : Free</p>
+                                                                <ul class="fd__rating">
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li class="rating__opasity"><i class="zmdi zmdi-star"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Single Food -->
+                                            </th:block>
+                                        </div>
+                                        <!-- End Single Tab Content -->
+                                    </div>
+                                </div>
+                                <!-- End Single tab -->
+                                <!-- Start Single tab -->
+                                <div class="single__tab__panel tab-pane fade" id="nav-breakfast" role="tabpanel">
+                                    <div class="tab__content__wrap">
+                                        <!-- Start Single Tab Content -->
+                                        <div class="single__tab__content">
+                                            <th:block th:each="food : ${breakfastFoods1}">
+                                                <!-- Start Single Food -->
+                                                <div class="food__menu">
+                                                    <div class="food__menu__thumb">
+                                                        <a th:href="@{/detail/__${food.id}__}">
+                                                            <img class="thumbnail-img" th:src="${food.image}" alt="product images">
+                                                        </a>
+                                                    </div>
+                                                    <div class="food__menu__details">
+                                                        <div class="fd__menu__title__prize">
+                                                            <h4><a th:href="@{/detail/__${food.id}__}" th:text="${food.name}"></a></h4>
+                                                            <span class="menu__prize" th:text="'$' + ${food.price}"></span>
+                                                        </div>
+                                                        <div class="fd__menu__details">
+                                                            <p th:text="'Food Type : ' + ${food.category}"></p>
+                                                            <div class="delivery__time__rating">
+                                                                <p>Delivery Time : 60 min, Delivery Cost : Free</p>
+                                                                <ul class="fd__rating">
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li class="rating__opasity"><i class="zmdi zmdi-star"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Single Food -->
+                                            </th:block>
+                                        </div>
+                                        <!-- End Single Tab Content -->
+                                        <!-- Start Single Tab Content -->
+                                        <div class="single__tab__content">
+                                            <th:block th:each="food : ${breakfastFoods2}">
+                                                <!-- Start Single Food -->
+                                                <div class="food__menu">
+                                                    <div class="food__menu__thumb">
+                                                        <a th:href="@{/detail/__${food.id}__}">
+                                                            <img class="thumbnail-img" th:src="${food.image}" alt="product images">
+                                                        </a>
+                                                    </div>
+                                                    <div class="food__menu__details">
+                                                        <div class="fd__menu__title__prize">
+                                                            <h4><a th:href="@{/detail/__${food.id}__}" th:text="${food.name}"></a></h4>
+                                                            <span class="menu__prize" th:text="'$' + ${food.price}"></span>
+                                                        </div>
+                                                        <div class="fd__menu__details">
+                                                            <p th:text="'Food Type : ' + ${food.category}"></p>
+                                                            <div class="delivery__time__rating">
+                                                                <p>Delivery Time : 60 min, Delivery Cost : Free</p>
+                                                                <ul class="fd__rating">
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li class="rating__opasity"><i class="zmdi zmdi-star"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Single Food -->
+                                            </th:block>
+                                        </div>
+                                        <!-- End Single Tab Content -->
+                                    </div>
+                                </div>
+                                <!-- End Single tab -->
+                                <!-- Start Single tab -->
+                                <div class="single__tab__panel tab-pane fade" id="nav-lunch" role="tabpanel">
+                                    <div class="tab__content__wrap">
+                                        <!-- Start Single Tab Content -->
+                                        <div class="single__tab__content">
+                                            <th:block th:each="food : ${lunchFoods1}">
+                                                <!-- Start Single Food -->
+                                                <div class="food__menu">
+                                                    <div class="food__menu__thumb">
+                                                        <a th:href="@{/detail/__${food.id}__}">
+                                                            <img class="thumbnail-img" th:src="${food.image}" alt="product images">
+                                                        </a>
+                                                    </div>
+                                                    <div class="food__menu__details">
+                                                        <div class="fd__menu__title__prize">
+                                                            <h4><a th:href="@{/detail/__${food.id}__}" th:text="${food.name}"></a></h4>
+                                                            <span class="menu__prize" th:text="'$' + ${food.price}"></span>
+                                                        </div>
+                                                        <div class="fd__menu__details">
+                                                            <p th:text="'Food Type : ' + ${food.category}"></p>
+                                                            <div class="delivery__time__rating">
+                                                                <p>Delivery Time : 60 min, Delivery Cost : Free</p>
+                                                                <ul class="fd__rating">
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li class="rating__opasity"><i class="zmdi zmdi-star"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Single Food -->
+                                            </th:block>
+                                        </div>
+                                        <!-- End Single Tab Content -->
+                                        <!-- Start Single Tab Content -->
+                                        <div class="single__tab__content">
+                                            <th:block th:each="food : ${dinnerFoods2}">
+                                                <!-- Start Single Food -->
+                                                <div class="food__menu">
+                                                    <div class="food__menu__thumb">
+                                                        <a th:href="@{/detail/__${food.id}__}">
+                                                            <img class="thumbnail-img" th:src="${food.image}" alt="product images">
+                                                        </a>
+                                                    </div>
+                                                    <div class="food__menu__details">
+                                                        <div class="fd__menu__title__prize">
+                                                            <h4><a th:href="@{/detail/__${food.id}__}" th:text="${food.name}"></a></h4>
+                                                            <span class="menu__prize" th:text="'$' + ${food.price}"></span>
+                                                        </div>
+                                                        <div class="fd__menu__details">
+                                                            <p th:text="'Food Type : ' + ${food.category}"></p>
+                                                            <div class="delivery__time__rating">
+                                                                <p>Delivery Time : 60 min, Delivery Cost : Free</p>
+                                                                <ul class="fd__rating">
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li class="rating__opasity"><i class="zmdi zmdi-star"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Single Food -->
+                                            </th:block>
+                                        </div>
+                                        <!-- End Single Tab Content -->
+                                    </div>
+                                </div>
+                                <!-- End Single tab -->
+                                <!-- Start Single tab -->
+                                <div class="single__tab__panel tab-pane fade" id="nav-dinner" role="tabpanel">
+                                    <div class="tab__content__wrap">
+                                        <!-- Start Single Tab Content -->
+                                        <div class="single__tab__content">
+                                            <th:block th:each="food : ${dinnerFoods1}">
+                                                <!-- Start Single Food -->
+                                                <div class="food__menu">
+                                                    <div class="food__menu__thumb">
+                                                        <a th:href="@{/detail/__${food.id}__}">
+                                                            <img class="thumbnail-img" th:src="${food.image}" alt="product images">
+                                                        </a>
+                                                    </div>
+                                                    <div class="food__menu__details">
+                                                        <div class="fd__menu__title__prize">
+                                                            <h4><a th:href="@{/detail/__${food.id}__}" th:text="${food.name}"></a></h4>
+                                                            <span class="menu__prize" th:text="'$' + ${food.price}"></span>
+                                                        </div>
+                                                        <div class="fd__menu__details">
+                                                            <p th:text="'Food Type : ' + ${food.category}"></p>
+                                                            <div class="delivery__time__rating">
+                                                                <p>Delivery Time : 60 min, Delivery Cost : Free</p>
+                                                                <ul class="fd__rating">
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li class="rating__opasity"><i class="zmdi zmdi-star"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Single Food -->
+                                            </th:block>
+                                        </div>
+                                        <!-- End Single Tab Content -->
+                                        <!-- Start Single Tab Content -->
+                                        <div class="single__tab__content">
+                                            <th:block th:each="food : ${dinnerFoods2}">
+                                                <!-- Start Single Food -->
+                                                <div class="food__menu">
+                                                    <div class="food__menu__thumb">
+                                                        <a th:href="@{/detail/__${food.id}__}">
+                                                            <img class="thumbnail-img" th:src="${food.image}" alt="product images">
+                                                        </a>
+                                                    </div>
+                                                    <div class="food__menu__details">
+                                                        <div class="fd__menu__title__prize">
+                                                            <h4><a th:href="@{/detail/__${food.id}__}" th:text="${food.name}"></a></h4>
+                                                            <span class="menu__prize" th:text="'$' + ${food.price}"></span>
+                                                        </div>
+                                                        <div class="fd__menu__details">
+                                                            <p th:text="'Food Type : ' + ${food.category}"></p>
+                                                            <div class="delivery__time__rating">
+                                                                <p>Delivery Time : 60 min, Delivery Cost : Free</p>
+                                                                <ul class="fd__rating">
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li class="rating__opasity"><i class="zmdi zmdi-star"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Single Food -->
+                                            </th:block>
+                                        </div>
+                                        <!-- End Single Tab Content -->
+                                    </div>
+                                </div>
+                                <!-- End Single tab -->
+                                <!-- Start Single tab -->
+                                <div class="single__tab__panel tab-pane fade" id="nav-coffee" role="tabpanel">
+                                    <div class="tab__content__wrap">
+                                        <!-- Start Single Tab Content -->
+                                        <div class="single__tab__content">
+                                            <th:block th:each="food : ${coffeeFoods1}">
+                                                <!-- Start Single Food -->
+                                                <div class="food__menu">
+                                                    <div class="food__menu__thumb">
+                                                        <a th:href="@{/detail/__${food.id}__}">
+                                                            <img class="thumbnail-img" th:src="${food.image}" alt="product images">
+                                                        </a>
+                                                    </div>
+                                                    <div class="food__menu__details">
+                                                        <div class="fd__menu__title__prize">
+                                                            <h4><a th:href="@{/detail/__${food.id}__}" th:text="${food.name}"></a></h4>
+                                                            <span class="menu__prize" th:text="'$' + ${food.price}"></span>
+                                                        </div>
+                                                        <div class="fd__menu__details">
+                                                            <p th:text="'Food Type : ' + ${food.category}"></p>
+                                                            <div class="delivery__time__rating">
+                                                                <p>Delivery Time : 60 min, Delivery Cost : Free</p>
+                                                                <ul class="fd__rating">
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li class="rating__opasity"><i class="zmdi zmdi-star"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Single Food -->
+                                            </th:block>
+                                        </div>
+                                        <!-- End Single Tab Content -->
+                                        <!-- Start Single Tab Content -->
+                                        <div class="single__tab__content">
+                                            <th:block th:each="food : ${coffeeFoods2}">
+                                                <!-- Start Single Food -->
+                                                <div class="food__menu">
+                                                    <div class="food__menu__thumb">
+                                                        <a th:href="@{/detail/__${food.id}__}">
+                                                            <img class="thumbnail-img" th:src="${food.image}" alt="product images">
+                                                        </a>
+                                                    </div>
+                                                    <div class="food__menu__details">
+                                                        <div class="fd__menu__title__prize">
+                                                            <h4><a th:href="@{/detail/__${food.id}__}" th:text="${food.name}"></a></h4>
+                                                            <span class="menu__prize" th:text="'$' + ${food.price}"></span>
+                                                        </div>
+                                                        <div class="fd__menu__details">
+                                                            <p th:text="'Food Type : ' + ${food.category}"></p>
+                                                            <div class="delivery__time__rating">
+                                                                <p>Delivery Time : 60 min, Delivery Cost : Free</p>
+                                                                <ul class="fd__rating">
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li class="rating__opasity"><i class="zmdi zmdi-star"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Single Food -->
+                                            </th:block>
+                                        </div>
+                                        <!-- End Single Tab Content -->
+                                    </div>
+                                </div>
+                                <!-- End Single tab -->
+                                <!-- Start Single tab -->
+                                <div class="single__tab__panel tab-pane fade" id="nav-snacks" role="tabpanel">
+                                    <div class="tab__content__wrap">
+                                        <!-- Start Single Tab Content -->
+                                        <div class="single__tab__content">
+                                            <th:block th:each="food : ${snacksFoods1}">
+                                                <!-- Start Single Food -->
+                                                <div class="food__menu">
+                                                    <div class="food__menu__thumb">
+                                                        <a th:href="@{/detail/__${food.id}__}">
+                                                            <img class="thumbnail-img" th:src="${food.image}" alt="product images">
+                                                        </a>
+                                                    </div>
+                                                    <div class="food__menu__details">
+                                                        <div class="fd__menu__title__prize">
+                                                            <h4><a th:href="@{/detail/__${food.id}__}" th:text="${food.name}"></a></h4>
+                                                            <span class="menu__prize" th:text="'$' + ${food.price}"></span>
+                                                        </div>
+                                                        <div class="fd__menu__details">
+                                                            <p th:text="'Food Type : ' + ${food.category}"></p>
+                                                            <div class="delivery__time__rating">
+                                                                <p>Delivery Time : 60 min, Delivery Cost : Free</p>
+                                                                <ul class="fd__rating">
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li class="rating__opasity"><i class="zmdi zmdi-star"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Single Food -->
+                                            </th:block>
+                                        </div>
+                                        <!-- End Single Tab Content -->
+                                        <!-- Start Single Tab Content -->
+                                        <div class="single__tab__content">
+                                            <th:block th:each="food : ${snacksFoods2}">
+                                                <!-- Start Single Food -->
+                                                <div class="food__menu">
+                                                    <div class="food__menu__thumb">
+                                                        <a th:href="@{/detail/__${food.id}__}">
+                                                            <img class="thumbnail-img" th:src="${food.image}" alt="product images">
+                                                        </a>
+                                                    </div>
+                                                    <div class="food__menu__details">
+                                                        <div class="fd__menu__title__prize">
+                                                            <h4><a th:href="@{/detail/__${food.id}__}" th:text="${food.name}"></a></h4>
+                                                            <span class="menu__prize" th:text="'$' + ${food.price}"></span>
+                                                        </div>
+                                                        <div class="fd__menu__details">
+                                                            <p th:text="'Food Type : ' + ${food.category}"></p>
+                                                            <div class="delivery__time__rating">
+                                                                <p>Delivery Time : 60 min, Delivery Cost : Free</p>
+                                                                <ul class="fd__rating">
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li><i class="zmdi zmdi-star"></i></li>
+                                                                    <li class="rating__opasity"><i class="zmdi zmdi-star"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Single Food -->
+                                            </th:block>
+                                        </div>
+                                        <!-- End Single Tab Content -->
+                                    </div>
+                                </div>
+                                <!-- End Single tab -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Special Menu -->
+    <!-- Start Download App Area -->
+    <section class="food__download__app__area section-padding--lg bg--white bg__shape--1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="section__title service__align--left">
+                        <p>the process of our service </p>
+                        <h2 class="title__line">Download our app</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt--80">
+                <div class="col-lg-12 poss--relative">
+                    <div class="app__download__container">
+                        <div class="app__download__inner inline__image__css--1 download-bg">
+                            <h2>Aahar now in your hand</h2>
+                            <h6>Download! to get this app Faster way to order food</h6>
+                        </div>
+                        <ul class="dwn__app__list mt-4">
+                            <li class="wow lightSpeedIn" data-wow-delay="0.2s">
+                                <a href="#"><img th:src="@{/resource/images/app/2.png}" alt="app images"></a>
+                            </li>
+                            <li class="wow lightSpeedIn" data-wow-delay="0.3s">
+                                <a href="#"><img th:src="@{/resource/images/app/3.png}" alt="app images"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Download App Area -->
+    <!-- Start Footer Area -->
+    <th:block th:replace="/template/footer"></th:block>
+    <!-- End Footer Area -->
+</div><!-- //Main wrapper -->
+
+<!-- JS Files -->
+<script th:src="@{/resource/js/vendor/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/resource/js/popper.min.js}"></script>
+<script th:src="@{/resource/js/bootstrap.min.js}"></script>
+<script th:src="@{/resource/js/plugins.js}"></script>
+<script th:src="@{/resource/js/active.js}"></script>
+<script th:src="@{/resource/js/toastr.js}"></script>
+<script th:src="@{/resource/jscode.js}"></script>
+</body>
+</html>
