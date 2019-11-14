@@ -17,8 +17,6 @@ public class Food {
 
     private Double price;
 
-    private String location;
-
     private String summary;
 
     private String description;
@@ -27,25 +25,10 @@ public class Food {
 
     private String category;
 
-    @Transient
-    private int qty;
-
-    @OneToMany(mappedBy = "food", fetch = FetchType.EAGER)
-    private List<Review> reviews;
+    @OneToMany(mappedBy = "ordered", fetch = FetchType.EAGER)
+    private List<SingleOrder> singleOrders;
 
     public Food() {
-    }
-
-    public Food(String name, String image, Double price, String location, String summary, String description, String foodType, String category, List<Review> reviews) {
-        this.name = name;
-        this.image = image;
-        this.price = price;
-        this.location = location;
-        this.summary = summary;
-        this.description = description;
-        this.foodType = foodType;
-        this.category = category;
-        this.reviews = reviews;
     }
 
     public Long getId() {
@@ -80,14 +63,6 @@ public class Food {
         this.price = price;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public String getSummary() {
         return summary;
     }
@@ -120,19 +95,11 @@ public class Food {
         this.category = category;
     }
 
-    public int getQty() {
-        return qty;
+    public List<SingleOrder> getSingleOrders() {
+        return singleOrders;
     }
 
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
+    public void setSingleOrders(List<SingleOrder> singleOrders) {
+        this.singleOrders = singleOrders;
     }
 }

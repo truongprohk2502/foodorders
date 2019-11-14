@@ -1,29 +1,28 @@
 package code.session;
 
 import code.model.Food;
-import code.service.FoodService;
-import org.springframework.beans.factory.annotation.Autowired;
+import code.model.SingleOrder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CartSession {
 
-    private List<Food> foods;
+    private List<SingleOrder> singleOrders;
 
     private Double shippingFee;
 
     public CartSession() {
         shippingFee = 2.5;
-        foods = new ArrayList<>();
+        singleOrders = new ArrayList<>();
     }
 
-    public List<Food> getFoods() {
-        return foods;
+    public List<SingleOrder> getSingleOrders() {
+        return singleOrders;
     }
 
-    public void setFoods(List<Food> foods) {
-        this.foods = foods;
+    public void setSingleOrders(List<SingleOrder> singleOrders) {
+        this.singleOrders = singleOrders;
     }
 
     public Double getShippingFee() {
@@ -35,31 +34,49 @@ public class CartSession {
     }
 
     public int getSize() {
-        return foods.size();
+        return singleOrders.size();
     }
 
     public Double getSubTotal() {
         Double d = 0.0;
-        for (Food food : foods) {
-            d += food.getPrice();
+        for (SingleOrder singleOrder : singleOrders) {
+            d += singleOrder.getFood().getPrice() * singleOrder.getQuantity();
         }
         return d;
     }
 
     public Double getTotal() {
-        return getSubTotal() + shippingFee;
+        return getSubTotal() != 0 ? getSubTotal() + shippingFee : 0D;
     }
 
-    public void add(Food food) {
-        foods.add(food);
+    public void add(SingleOrder singleOrder) {
+        singleOrders.add(singleOrder);
     }
 
     public void removeById(Long id) {
-        for (Food food : foods) {
-            if (food.getId() == id) {
-                foods.remove(food);
+        for (SingleOrder singleOrder : singleOrders) {
+            if (singleOrder.getFood().getId() == id) {
+                singleOrders.remove(singleOrder);
                 return;
             }
         }
+    }
+
+    public void setQtyById(Long id, Long qty) {
+        for (SingleOrder singleOrder : singleOrders) {
+            if (singleOrder.getFood().getId() == id) {
+                singleOrder.setQuantity(qty);
+                return;
+            }
+        }
+    }
+
+    public boolean constains(Food food) {
+        for (SingleOrder s : singleOrders) {
+            if (s.getFood().getId() == food.getId()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

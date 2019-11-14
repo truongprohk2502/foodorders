@@ -1,5 +1,8 @@
 package code.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,6 +24,8 @@ public class Account {
 
     private String city;
 
+    private String district;
+
     private String firstName;
 
     private String lastName;
@@ -34,28 +39,20 @@ public class Account {
     private String image;
 
     @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
-    private List<Review> reviews;
+    private List<Ordered> ordereds;
 
     public Account() {
     }
 
-    public Account(String username, String role, String email, String password, String city, String firstName, String lastName, String streetAddress, String apartmentNumber, String phone, String image, List<Review> reviews) {
-        this.username = username;
-        this.role = role;
-        this.email = email;
-        this.password = password;
-        this.city = city;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.streetAddress = streetAddress;
-        this.apartmentNumber = apartmentNumber;
-        this.phone = phone;
-        this.image = image;
-        this.reviews = reviews;
-    }
-
     public String getFullname() {
         return firstName + " " + lastName;
+    }
+
+    public String getAddress() {
+        if ("".equals(apartmentNumber) || apartmentNumber == null) {
+            return streetAddress + ", " + district + ", " + city;
+        }
+        return apartmentNumber + ", " + streetAddress + ", " + district + ", " + city;
     }
 
     public Long getId() {
@@ -106,6 +103,14 @@ public class Account {
         this.city = city;
     }
 
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -154,11 +159,11 @@ public class Account {
         this.image = image;
     }
 
-    public List<Review> getReviews() {
-        return reviews;
+    public List<Ordered> getOrdereds() {
+        return ordereds;
     }
 
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
+    public void setOrdereds(List<Ordered> ordereds) {
+        this.ordereds = ordereds;
     }
 }

@@ -1,0 +1,157 @@
+<!doctype html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title th:text="${title} + ' - Aahar Food'"></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" th:href="@{/resource/images/favicon.ico}">
+    <link rel="apple-touch-icon" th:href="@{/resource/images/icon.png}">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" th:href="@{/resource/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/resource/css/plugins.css}">
+    <link rel="stylesheet" th:href="@{/resource/style.css}">
+
+    <!-- Cusom css -->
+    <link rel="stylesheet" th:href="@{/resource/css/custom.css}">
+
+    <!-- Toastr css -->
+    <link rel="stylesheet" th:href="@{/resource/css/toastr.css}">
+
+    <!-- Modernizer js -->
+    <script th:src="@{/resource/js/vendor/modernizr-3.5.0.min.js}"></script>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+
+<!-- <div class="fakeloader"></div> -->
+
+<!-- Main wrapper -->
+<div class="wrapper" id="wrapper">
+    <!-- Start Header Area -->
+    <th:block th:replace="/template/header"></th:block>
+    <!-- End Header Area -->
+    <!-- Start Bradcaump area -->
+    <div class="ht__bradcaump__area bg-image--18">
+        <div class="ht__bradcaump__wrap d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="bradcaump__inner text-center">
+                            <h2 class="bradcaump-title text-white">Manage Foods</h2>
+                            <nav class="bradcaump-inner">
+                                <a class="breadcrumb-item text-white" href="index.html">Home</a>
+                                <span class="brd-separetor"><i class="zmdi zmdi-long-arrow-right text-white"></i></span>
+                                <span class="breadcrumb-item active text-white">Admin</span>
+                                <span class="brd-separetor"><i class="zmdi zmdi-long-arrow-right text-white"></i></span>
+                                <span class="breadcrumb-item active text-white" th:text="${title}"></span>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Bradcaump area -->
+    <div class="container-fluid">
+        <h1 class="my-5 text-center" th:text="${title}"></h1>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Foods</th>
+                <th scope="col">Order Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="order : ${orders}">
+                <tr th:id="'row' + ${order.id}">
+                    <td th:text="${order.account.getFullname()}"></td>
+                    <td th:text="${order.account.getAddress()}"></td>
+                    <td th:text="${order.account.email}"></td>
+                    <td th:text="${order.account.phone}"></td>
+                    <td>
+                        <th:block th:each="single : ${order.singleOrders}">
+                            <span th:text="${single.food.name} + ' x' + ${single.quantity}"></span><br>
+                        </th:block>
+                    </td>
+                    <td th:text="${order.orderDate}"></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+        <nav class="my-3" aria-label="Page navigation example">
+            <ul class="pagination">
+                <li th:if="${orders.hasPrevious()}" class="page-item">
+                    <a class="page-link" th:href="@{'/admin/manage-food' (page=${orders.number - 1})}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <th:block th:each="index : ${#numbers.sequence(1, orders.totalPages, 1)}">
+                    <li th:if="${index == orders.number + 1}" class="page-item active"><a class="page-link" th:href="@{'/admin/manage-food' (page=${index - 1})}" th:text="${index}"></a></li>
+                    <li th:if="${index != orders.number + 1}" class="page-item"><a class="page-link" th:href="@{'/admin/manage-food' (page=${index - 1})}" th:text="${index}"></a></li>
+                </th:block>
+                <li th:if="${orders.hasNext()}" class="page-item">
+                    <a class="page-link" th:href="@{'/admin/manage-food' (page=${orders.number + 1})}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!-- Start Footer Area -->
+    <th:block th:replace="/template/footer"></th:block>
+    <!-- End Footer Area -->
+</div><!-- //Main wrapper -->
+
+<!--Modals-->
+<div class="modal fade" id="finishModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Remove Delivering Order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="mb-3">Choose finish status of this order?</p>
+                <div class="radio">
+                    <label><input type="radio" name="finish" value="delivered" checked>&nbsp;&nbsp;Order has delivered successfully</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="finish" value="canceled">&nbsp;&nbsp;Order has been canceled</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="finishOrder()">Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modals-->
+
+<!-- JS Files -->
+<script th:src="@{/resource/js/vendor/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/resource/js/popper.min.js}"></script>
+<script th:src="@{/resource/js/bootstrap.min.js}"></script>
+<script th:src="@{/resource/js/plugins.js}"></script>
+<script th:src="@{/resource/js/active.js}"></script>
+<script th:src="@{/resource/js/toastr.js}"></script>
+<script th:src="@{/resource/jscode.js}"></script>
+</body>
+</html>

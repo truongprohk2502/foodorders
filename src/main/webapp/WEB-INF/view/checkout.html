@@ -1,0 +1,247 @@
+<!doctype html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Checkout - Aahar Food</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" th:href="@{/resource/images/favicon.ico}">
+    <link rel="apple-touch-icon" th:href="@{/resource/images/icon.png}">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" th:href="@{/resource/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/resource/css/plugins.css}">
+    <link rel="stylesheet" th:href="@{/resource/style.css}">
+
+    <!-- Cusom css -->
+    <link rel="stylesheet" th:href="@{/resource/css/custom.css}">
+
+    <!-- Toastr css -->
+    <link rel="stylesheet" th:href="@{/resource/css/toastr.css}">
+
+    <!-- Modernizer js -->
+    <script th:src="@{/resource/js/vendor/modernizr-3.5.0.min.js}"></script>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+
+<!-- <div class="fakeloader"></div> -->
+
+<!-- Main wrapper -->
+<div class="wrapper" id="wrapper">
+    <!-- Start Header Area -->
+    <th:block th:replace="/template/header"></th:block>
+    <!-- End Header Area -->
+    <!-- Start Bradcaump area -->
+    <div class="ht__bradcaump__area bg-image--18">
+        <div class="ht__bradcaump__wrap d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="bradcaump__inner text-center">
+                            <h2 class="bradcaump-title text-white">Checkout</h2>
+                            <nav class="bradcaump-inner">
+                                <a class="breadcrumb-item text-white" href="index.html">Home</a>
+                                <span class="brd-separetor"><i class="zmdi zmdi-long-arrow-right text-white"></i></span>
+                                <span class="breadcrumb-item active text-white">Page</span>
+                                <span class="brd-separetor"><i class="zmdi zmdi-long-arrow-right text-white"></i></span>
+                                <span class="breadcrumb-item active text-white">Checkout Page</span>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Bradcaump area -->
+    <section class="htc__checkout bg--white section-padding--lg">
+        <!-- Checkout Section Start-->
+        <div class="checkout-section">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-6 col-12 mb-30">
+
+                        <!-- Checkout Accordion Start -->
+                        <div id="checkout-accordion">
+
+                            <!-- Checkout Method -->
+                            <div class="single-accordion">
+                                <a class="accordion-head" data-toggle="collapse" data-parent="#checkout-accordion" href="#checkout-method">1. checkout method</a>
+
+                                <div id="checkout-method" class="collapse show">
+                                    <div class="checkout-method accordion-body fix">
+
+                                        <th:block sec:authorize="isAnonymous()">
+                                            <ul class="checkout-method-list">
+                                                <li class="active" data-form="checkout-login-form">Login</li>
+                                                <li data-form="checkout-register-form">Register</li>
+                                            </ul>
+
+                                            <form class="checkout-login-form">
+                                                <div class="row">
+                                                    <div class="input-box col-md-6 col-12 mb--20"><input type="text" id="username2" placeholder="Username or Email" required></div>
+                                                    <div class="input-box col-md-6 col-12 mb--20"><input type="password" id="password2" placeholder="Password" required></div>
+                                                    <div class="input-box col-12 mb--20 color-red" id="login-error"></div>
+                                                    <div class="input-box col-12"><button class="custom-btn" type="button" onclick="login2()">Login</button></div>
+                                                </div>
+                                            </form>
+
+                                            <form class="checkout-register-form">
+                                                <div class="row">
+                                                    <div class="input-box col-md-6 col-12 mb--20"><input type="text" id="r-username2" placeholder="Your Username" required></div>
+                                                    <div class="input-box col-md-6 col-12 mb--20"><input type="email" id="r-email2" placeholder="Email Address" required></div>
+                                                    <div class="input-box col-md-6 col-12 mb--20"><input type="password" id="r-pass2" placeholder="Password" required></div>
+                                                    <div class="input-box col-md-6 col-12 mb--20"><input type="password" id="r-cpass2" placeholder="Confirm Password" required></div>
+                                                    <div class="input-box col-12 mb--20 color-red" id="register-error"></div>
+                                                    <div class="input-box col-12"><button class="custom-btn" type="button" onclick="register2()">Register</button></div>
+                                                </div>
+                                            </form>
+                                        </th:block>
+
+                                        <th:block sec:authorize="isAuthenticated()">
+                                            <div class="row">
+                                                <div class="col-12"><p><span class="font-weight-bold">Hello:&nbsp;</span><span th:text="${account.getFullname()}"></span></p></div>
+                                                <div class="col-12"><p><span class="font-weight-bold">Your username:&nbsp;</span><span th:text="${account.username}"></span></p></div>
+                                                <div class="col-12"><p><span class="font-weight-bold">Your email:&nbsp;</span><span th:text="${account.email}"></span></p></div>
+                                            </div>
+                                        </th:block>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!--Billing Method-->
+                            <div class="single-accordion">
+                                <a class="accordion-head collapsed" data-toggle="collapse" data-parent="#checkout-accordion" href="#billing-method">2. billing informatioon</a>
+                                <div id="billing-method" class="collapse">
+
+                                    <div class="accordion-body billing-method fix">
+
+                                        <form action="#" class="billing-form checkout-form">
+                                            <div class="row">
+                                                <input type="hidden" th:value="${account.username}" id="user">
+                                                <div class="col-md-6 col-12 mb--20">
+                                                    <input type="text" id="firstName" th:value="${account.firstName}" placeholder="First Name">
+                                                </div>
+                                                <div class="col-md-6 col-12 mb--20">
+                                                    <input type="text" id="lastName" th:value="${account.lastName}" placeholder="Last Name">
+                                                </div>
+                                                <div class="col-12 mb--20">
+                                                    <input placeholder="Street address" type="text" th:value="${account.streetAddress}" id="streetAddress">
+                                                </div>
+                                                <div class="col-12 mb--20">
+                                                    <input placeholder="Apartment, suite, unit etc. (Optional)" type="text" th:value="${account.apartmentNumber}" id="apartmentNumber">
+                                                </div>
+                                                <div class="col-md-6 col-12 mb--20">
+                                                    <input type="text" placeholder="City/Province" th:value="${account.city}" id="cityOrProvince">
+                                                </div>
+                                                <div class="col-md-6 col-12 mb--20">
+                                                    <input placeholder="District" type="text" id="district" th:value="${account.district}">
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <input type="text" placeholder="Email" id="emailAccount" th:value="${account.email}">
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <input placeholder="Phone Number" type="text" id="phoneNumber" th:value="${account.phone}">
+                                                </div>
+                                                <div class="col-md-6 col-12 mt-4">
+                                                    <button class="custom-btn" type="button" onclick="saveInfo()">Save</button>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Shipping Method -->
+                            <div class="single-accordion">
+                                <a class="accordion-head collapsed" data-toggle="collapse" data-parent="#checkout-accordion" href="#shipping-method">3. shipping informatioon</a>
+                                <div id="shipping-method" class="collapse">
+                                    <div class="accordion-body shipping-method fix">
+                                        <h5>shipping address</h5>
+                                        <p><span>address&nbsp;</span><span class="font-weight-normal" th:text="${account.getAddress()}"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Payment Method -->
+                            <div class="single-accordion">
+                                <a class="accordion-head collapsed" data-toggle="collapse" data-parent="#checkout-accordion" href="#payment-method">4. Payment method</a>
+                                <div id="payment-method" class="collapse">
+                                    <div class="accordion-body payment-method fix">
+                                        <ul class="payment-method-list">
+                                            <li class="active">check / money order</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><!-- Checkout Accordion Start -->
+                    </div>
+
+                    <!-- Order Details -->
+                    <div class="col-lg-6 col-12 mb-30">
+
+                        <div class="order-details-wrapper">
+                            <h2>your order</h2>
+                            <div class="order-details">
+                                <form action="#">
+                                    <ul>
+                                        <li>
+                                            <p class="strong">product</p>
+                                            <p class="strong">total</p>
+                                        </li>
+                                        <th:block th:each="order : ${orders}">
+                                            <li>
+                                                <p th:text="${order.food.name} + ' x' + ${order.quantity}"></p>
+                                                <p th:text="'$' + ${order.totalPrice}"></p>
+                                            </li>
+                                        </th:block>
+                                        <li>
+                                            <p class="strong">cart subtotal</p>
+                                            <p class="strong" th:text="'$' + ${subtotal}"></p>
+                                        </li>
+                                        <li>
+                                            <p class="strong">shipping fee</p>
+                                            <p class="strong" th:text="'$' + ${shippingFee}"></p>
+                                        </li>
+                                        <li>
+                                            <p class="strong">order total</p>
+                                            <p class="strong" id="orderTotal" th:text="'$' + ${total}"></p>
+                                        </li>
+                                        <li><button type="button" onclick="order()" class="food__btn">place order</button></li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div><!-- Checkout Section End-->
+    </section>
+    <!-- Start Footer Area -->
+    <th:block th:replace="/template/footer"></th:block>
+    <!-- End Footer Area -->
+</div><!-- //Main wrapper -->
+
+<!-- JS Files -->
+<script th:src="@{/resource/js/vendor/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/resource/js/popper.min.js}"></script>
+<script th:src="@{/resource/js/bootstrap.min.js}"></script>
+<script th:src="@{/resource/js/plugins.js}"></script>
+<script th:src="@{/resource/js/active.js}"></script>
+<script th:src="@{/resource/js/toastr.js}"></script>
+<script th:src="@{/resource/jscode.js}"></script>
+</body>
+</html>

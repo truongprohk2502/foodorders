@@ -1,0 +1,136 @@
+<!doctype html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Category - Aahar Food</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" th:href="@{/resource/images/favicon.ico}">
+    <link rel="apple-touch-icon" th:href="@{/resource/images/icon.png}">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" th:href="@{/resource/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/resource/css/plugins.css}">
+    <link rel="stylesheet" th:href="@{/resource/style.css}">
+
+    <!-- Cusom css -->
+    <link rel="stylesheet" th:href="@{/resource/css/custom.css}">
+
+    <!-- Toastr css -->
+    <link rel="stylesheet" th:href="@{/resource/css/toastr.css}">
+
+    <!-- Modernizer js -->
+    <script th:src="@{/resource/js/vendor/modernizr-3.5.0.min.js}"></script>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+
+<!-- <div class="fakeloader"></div> -->
+
+<!-- Main wrapper -->
+<div class="wrapper" id="wrapper">
+    <!-- Start Header Area -->
+    <th:block th:replace="/template/header"></th:block>
+    <!-- End Header Area -->
+    <!-- Start Bradcaump area -->
+    <div class="ht__bradcaump__area bg-image--18">
+        <div class="ht__bradcaump__wrap d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="bradcaump__inner text-center">
+                            <h2 class="bradcaump-title text-white">Menu List</h2>
+                            <nav class="bradcaump-inner">
+                                <a class="breadcrumb-item text-white" href="index.html">Home</a>
+                                <span class="brd-separetor"><i class="zmdi zmdi-long-arrow-right text-white"></i></span>
+                                <span class="breadcrumb-item active text-white">Category</span>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Bradcaump area -->
+    <!-- Start Menu Grid Area -->
+    <section class="food__menu__grid__area section-padding--lg">
+        <div class="container">
+            <div class="row mt--30">
+                <div class="col-lg-12">
+                    <div class="fd__tab__content tab-content" id="nav-tabContent">
+                        <!-- Start Single Content -->
+                        <div class="food__list__tab__content tab-pane fade show active" id="nav-all" role="tabpanel">
+                            <th:block th:each="food : ${foods}">
+                                <!-- Start Single Food -->
+                                <div class="single__food__list d-flex wow fadeInUp">
+                                    <div class="food__list__thumb">
+                                        <a th:href="@{/detail/__${food.id}__}">
+                                            <img th:src="${food.image}" alt="list food images">
+                                        </a>
+                                    </div>
+                                    <div class="food__list__inner d-flex align-items-center justify-content-between">
+                                        <div class="food__list__details">
+                                            <h2><a th:href="@{/detail/__${food.id}__}" th:text="${food.name}"></a></h2>
+                                            <p th:text="${food.summary}"></p>
+                                            <div class="list__btn">
+                                                <a class="food__btn grey--btn theme--hover" th:href="@{/detail/__${food.id}__}">Order Now</a>
+                                            </div>
+                                        </div>
+                                        <div class="food__rating">
+                                            <div class="list__food__prize">
+                                                <span th:text="'$' + ${food.price}"></span>
+                                            </div>
+                                            <ul class="rating">
+                                                <li><i class="zmdi zmdi-star"></i></li>
+                                                <li><i class="zmdi zmdi-star"></i></li>
+                                                <li><i class="zmdi zmdi-star"></i></li>
+                                                <li><i class="zmdi zmdi-star"></i></li>
+                                                <li class="rating__opasity"><i class="zmdi zmdi-star"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Single Food -->
+                            </th:block>
+                        </div>
+                        <!-- End Single Content -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="food__pagination d-flex justify-content-center align-items-center mt--130">
+                        <li th:if="${foods.hasPrevious()}"><a th:href="@{'/list/' + ${category}(page=${foods.number - 1})}" class="c-pointer"><i class="zmdi zmdi-chevron-left"></i></a></li>
+                        <th:block th:each="index : ${#numbers.sequence(1, foods.totalPages, 1)}">
+                            <li class="active" th:if="${index == foods.number + 1}"><a class="c-pointer" th:text="${index}"></a></li>
+                            <li th:if="${index != foods.number + 1}"><a th:href="@{'/list/' + ${category}(page=${index - 1})}" class="c-pointer" th:text="${index}"></a></li>
+                        </th:block>
+                        <li th:if="${foods.hasNext()}"><a th:href="@{'/list/' + ${category}(page=${foods.number + 1})}" class="c-pointer"><i class="zmdi zmdi-chevron-right"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Menu Grid Area -->
+    <!-- Start Footer Area -->
+    <th:block th:replace="/template/footer"></th:block>
+    <!-- End Footer Area -->
+</div><!-- //Main wrapper -->
+
+<!-- JS Files -->
+<script th:src="@{/resource/js/vendor/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/resource/js/popper.min.js}"></script>
+<script th:src="@{/resource/js/bootstrap.min.js}"></script>
+<script th:src="@{/resource/js/plugins.js}"></script>
+<script th:src="@{/resource/js/active.js}"></script>
+<script th:src="@{/resource/js/toastr.js}"></script>
+<script th:src="@{/resource/jscode.js}"></script>
+</body>
+</html>

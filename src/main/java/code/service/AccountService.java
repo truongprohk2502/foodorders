@@ -4,7 +4,9 @@ import code.model.Account;
 
 public interface AccountService {
 
-    public Account findAccountByUsername(String username);
+    Account findAccountByUsername(String username);
 
-    public void save(Account account);
+    Account findAccountByEmail(String email);
+
+    void save(Account account);
 }

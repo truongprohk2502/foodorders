@@ -1,0 +1,202 @@
+<!doctype html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Manage Foods - Aahar Food</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" th:href="@{/resource/images/favicon.ico}">
+    <link rel="apple-touch-icon" th:href="@{/resource/images/icon.png}">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" th:href="@{/resource/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/resource/css/plugins.css}">
+    <link rel="stylesheet" th:href="@{/resource/style.css}">
+
+    <!-- Cusom css -->
+    <link rel="stylesheet" th:href="@{/resource/css/custom.css}">
+
+    <!-- Toastr css -->
+    <link rel="stylesheet" th:href="@{/resource/css/toastr.css}">
+
+    <!-- Modernizer js -->
+    <script th:src="@{/resource/js/vendor/modernizr-3.5.0.min.js}"></script>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+
+<!-- <div class="fakeloader"></div> -->
+
+<!-- Main wrapper -->
+<div class="wrapper" id="wrapper">
+    <!-- Start Header Area -->
+    <th:block th:replace="/template/header"></th:block>
+    <!-- End Header Area -->
+    <!-- Start Bradcaump area -->
+    <div class="ht__bradcaump__area bg-image--18">
+        <div class="ht__bradcaump__wrap d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="bradcaump__inner text-center">
+                            <h2 class="bradcaump-title text-white">Manage Foods</h2>
+                            <nav class="bradcaump-inner">
+                                <a class="breadcrumb-item text-white" href="index.html">Home</a>
+                                <span class="brd-separetor"><i class="zmdi zmdi-long-arrow-right text-white"></i></span>
+                                <span class="breadcrumb-item active text-white">Admin</span>
+                                <span class="brd-separetor"><i class="zmdi zmdi-long-arrow-right text-white"></i></span>
+                                <span class="breadcrumb-item active text-white">Manage Foods</span>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Bradcaump area -->
+    <div class="container-fluid">
+        <button class="btn btn-success my-5 ml-5" data-toggle="modal" data-target="#createModal">Add new food</button>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Image Link</th>
+                <th scope="col">Price</th>
+                <th scope="col">Summary</th>
+                <th scope="col">Description</th>
+                <th scope="col">Type</th>
+                <th scope="col">Category</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="food : ${foods}">
+                <tr th:id="'row' + ${food.id}">
+                    <td><input class="form-group" type="text" th:id="'name' + ${food.id}" th:value="${food.name}"></td>
+                    <td><input class="form-group" type="text" th:id="'image' + ${food.id}" th:value="${food.image}"></td>
+                    <td><input class="form-group" type="text" th:id="'price' + ${food.id}" th:value="${food.price}"></td>
+                    <td><textarea class="form-group" rows="5" th:id="'summary' + ${food.id}" th:text="${food.summary}"></textarea></td>
+                    <td><textarea class="form-group" rows="5" th:id="'description' + ${food.id}" th:text="${food.description}"></textarea></td>
+                    <td><input class="form-group" type="text" th:id="'type' + ${food.id}" th:value="${food.foodType}"></td>
+                    <td><input class="form-group" type="text" th:id="'category' + ${food.id}" th:value="${food.category}"></td>
+                    <td><a class="a-table" th:onclick="'updateFood(' + ${food.id} + ')'">Update</a></td>
+                    <td><a class="a-table" th:onclick="'showDeleteFood(' + ${food.id} + ')'">Delete</a></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+        <nav class="my-3" aria-label="Page navigation example">
+            <ul class="pagination">
+                <li th:if="${foods.hasPrevious()}" class="page-item">
+                    <a class="page-link" th:href="@{'/admin/manage-food' (page=${foods.number - 1})}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <th:block th:each="index : ${#numbers.sequence(1, foods.totalPages, 1)}">
+                    <li th:if="${index == foods.number + 1}" class="page-item active"><a class="page-link" th:href="@{'/admin/manage-food' (page=${index - 1})}" th:text="${index}"></a></li>
+                    <li th:if="${index != foods.number + 1}" class="page-item"><a class="page-link" th:href="@{'/admin/manage-food' (page=${index - 1})}" th:text="${index}"></a></li>
+                </th:block>
+                <li th:if="${foods.hasNext()}" class="page-item">
+                    <a class="page-link" th:href="@{'/admin/manage-food' (page=${foods.number + 1})}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!-- Start Footer Area -->
+    <th:block th:replace="/template/footer"></th:block>
+    <!-- End Footer Area -->
+</div><!-- //Main wrapper -->
+
+<!--Modals-->
+<div id="createModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create new food</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="create-name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="create-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="create-image" class="col-form-label">Image Link:</label>
+                        <input type="text" class="form-control" id="create-image">
+                    </div>
+                    <div class="form-group">
+                        <label for="create-price" class="col-form-label">Price:</label>
+                        <input type="number" class="form-control" id="create-price">
+                    </div>
+                    <div class="form-group">
+                        <label for="create-summary" class="col-form-label">Summany:</label>
+                        <textarea rows="4" o class="form-control" id="create-summary"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="create-description" class="col-form-label">Description:</label>
+                        <textarea rows="4" class="form-control" id="create-description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="create-type" class="col-form-label">Food type:</label>
+                        <input type="text" class="form-control" id="create-type">
+                    </div>
+                    <div class="form-group">
+                        <label for="create-category" class="col-form-label">Category:</label>
+                        <input type="text" class="form-control" id="create-category">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="createFood()">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Warning!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Do you really want to delete this food?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="deleteFood()">Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modals-->
+
+<!-- JS Files -->
+<script th:src="@{/resource/js/vendor/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/resource/js/popper.min.js}"></script>
+<script th:src="@{/resource/js/bootstrap.min.js}"></script>
+<script th:src="@{/resource/js/plugins.js}"></script>
+<script th:src="@{/resource/js/active.js}"></script>
+<script th:src="@{/resource/js/toastr.js}"></script>
+<script th:src="@{/resource/jscode.js}"></script>
+</body>
+</html>

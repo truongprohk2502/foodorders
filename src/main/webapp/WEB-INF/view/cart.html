@@ -1,0 +1,151 @@
+<!doctype html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Cart - Aahar Food</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" th:href="@{/resource/images/favicon.ico}">
+    <link rel="apple-touch-icon" th:href="@{/resource/images/icon.png}">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" th:href="@{/resource/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/resource/css/plugins.css}">
+    <link rel="stylesheet" th:href="@{/resource/style.css}">
+
+    <!-- Cusom css -->
+    <link rel="stylesheet" th:href="@{/resource/css/custom.css}">
+
+    <!-- Toastr css -->
+    <link rel="stylesheet" th:href="@{/resource/css/toastr.css}">
+
+    <!-- Modernizer js -->
+    <script th:src="@{/resource/js/vendor/modernizr-3.5.0.min.js}"></script>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+
+<!-- <div class="fakeloader"></div> -->
+
+<!-- Main wrapper -->
+<div class="wrapper" id="wrapper">
+    <!-- Start Header Area -->
+    <th:block th:replace="/template/header"></th:block>
+    <!-- End Header Area -->
+    <!-- Start Bradcaump area -->
+    <div class="ht__bradcaump__area bg-image--18">
+        <div class="ht__bradcaump__wrap d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="bradcaump__inner text-center">
+                            <h2 class="bradcaump-title text-white">Food Cart</h2>
+                            <nav class="bradcaump-inner">
+                                <a class="breadcrumb-item text-white" href="index.html">Home</a>
+                                <span class="brd-separetor"><i class="zmdi zmdi-long-arrow-right text-white"></i></span>
+                                <span class="breadcrumb-item active text-white">Page</span>
+                                <span class="brd-separetor"><i class="zmdi zmdi-long-arrow-right text-white"></i></span>
+                                <span class="breadcrumb-item active text-white">Cart Page</span>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Bradcaump area -->
+    <!-- cart-main-area start -->
+    <div class="cart-main-area section-padding--lg bg--white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 ol-lg-12">
+                    <form action="#">
+                        <div class="table-content table-responsive">
+                            <table>
+                                <thead>
+                                <tr class="title-top">
+                                    <th class="product-thumbnail">Image</th>
+                                    <th class="product-name">Product</th>
+                                    <th class="product-price">Price</th>
+                                    <th class="product-quantity">Quantity</th>
+                                    <th class="product-subtotal">Total</th>
+                                    <th class="product-remove">Remove</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <th:block th:each="order : ${orders}">
+                                    <tr th:id="'rowcart' + ${order.food.id}" class="row-food">
+                                        <input type="hidden" th:value="${order.food.id}">
+                                        <td class="product-thumbnail">
+                                            <a th:href="@{/detail/__${order.food.id}__}"><img th:src="${order.food.image}" alt="product img" /></a>
+                                        </td>
+                                        <td class="product-name">
+                                            <a th:href="@{/detail/__${order.food.id}__}" th:text="${order.food.name}"></a>
+                                        </td>
+                                        <td class="product-price"><span class="amount" th:text="'$' + ${order.food.price}"></span></td>
+                                        <td class="product-quantity"><input type="number" th:value="${order.quantity}" /></td>
+                                        <td class="product-subtotal" th:text="'$' + ${order.totalPrice}"></td>
+                                        <td class="product-remove">
+                                            <a href="#"><input type="checkbox" th:value="${order.food.id}"></a>
+                                        </td>
+                                    </tr>
+                                </th:block>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                    <div class="cartbox__btn">
+                        <ul class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
+                            <li><a href="#">Coupon Code</a></li>
+                            <li><a href="#">Apply Code</a></li>
+                            <li class="c-pointer"><a onclick="updateCart()">Update Cart</a></li>
+                            <li><a href="/checkout">Check Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 offset-lg-6">
+                    <div class="cartbox__total__area">
+                        <div class="cartbox-total d-flex justify-content-between">
+                            <ul class="cart__total__list">
+                                <li>Cart Total</li>
+                                <li>Shipping Fee</li>
+                            </ul>
+                            <ul class="cart__total__tk">
+                                <li id="subtotal" th:text="'$' + ${cart.getSubTotal()}"></li>
+                                <li id="fee" th:text="'$' + ${cart.getShippingFee()}"></li>
+                            </ul>
+                        </div>
+                        <div class="cart__total__amount">
+                            <span>Grand Total</span>
+                            <span id="total" th:text="'$' + ${cart.getTotal()}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- cart-main-area end -->
+    <!-- Start Footer Area -->
+    <th:block th:replace="/template/footer"></th:block>
+    <!-- End Footer Area -->
+</div><!-- //Main wrapper -->
+
+<!-- JS Files -->
+<script th:src="@{/resource/js/vendor/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/resource/js/popper.min.js}"></script>
+<script th:src="@{/resource/js/bootstrap.min.js}"></script>
+<script th:src="@{/resource/js/plugins.js}"></script>
+<script th:src="@{/resource/js/active.js}"></script>
+<script th:src="@{/resource/js/toastr.js}"></script>
+<script th:src="@{/resource/jscode.js}"></script>
+</body>
+</html>

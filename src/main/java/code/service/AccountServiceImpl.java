@@ -15,6 +15,11 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public Account findAccountByEmail(String email) {
+        return accountRepository.findAccountByEmailAndRoleIsNot(email, "ROLE_GUEST");
+    }
+
+    @Override
     public void save(Account account) {
         accountRepository.save(account);
     }

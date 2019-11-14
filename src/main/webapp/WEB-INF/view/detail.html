@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Menu Details ||  Aahar Food Delivery Html5 Template</title>
+    <title>Food Details - Aahar Food </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -46,11 +46,11 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="bradcaump__inner text-center">
-                            <h2 class="bradcaump-title text-white">Menu Details</h2>
+                            <h2 class="bradcaump-title text-white">Food Detail</h2>
                             <nav class="bradcaump-inner">
                                 <a class="breadcrumb-item text-white" href="index.html">Home</a>
-                                <span class="brd-separetor text-white"><i class="zmdi zmdi-long-arrow-right"></i></span>
-                                <span class="breadcrumb-item active text-white">Menu Details</span>
+                                <span class="brd-separetor"><i class="zmdi zmdi-long-arrow-right text-white"></i></span>
+                                <span class="breadcrumb-item active text-white">Choose Food</span>
                             </nav>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                                             <form id='myform' method='POST' action='#'>
                                                 <div class="product-quantity">
                                                     <div class="cart-plus-minus">
-                                                        <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
+                                                        <input id="qty-food" class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
                                                         <div class="add__to__cart__btn c-pointer">
                                                             <a class="food__btn" th:onclick="'addToCart(' + ${food.id} + ')'">Add To Cart</a>
                                                         </div>
@@ -107,42 +107,12 @@
                         <div class="menu__descrive__area">
                             <div class="menu__nav nav nav-tabs" role="tablist">
                                 <a class="active" id="nav-all-tab" data-toggle="tab" href="#nav-all" role="tab">Description</a>
-                                <a id="nav-breakfast-tab" data-toggle="tab" href="#nav-breakfast" role="tab">Reviews</a>
                             </div>
                             <!-- Start Tab Content -->
                             <div class="menu__tab__content tab-content" id="nav-tabContent">
                                 <!-- Start Single Content -->
                                 <div class="single__dec__content fade show active" id="nav-all" role="tabpanel">
                                     <p th:text="${food.description}"></p>
-                                </div>
-                                <!-- End Single Content -->
-                                <!-- Start Single Content -->
-                                <div class="single__dec__content fade" id="nav-breakfast" role="tabpanel">
-                                    <div class="review__wrapper">
-                                        <th:block th:each="review : ${food.getReviews()}">
-                                            <!-- Start Single Review -->
-                                            <div class="single__review d-flex">
-                                                <div class="review__thumb">
-                                                    <img th:src="${review.account.image}" alt="review images">
-                                                </div>
-                                                <div class="review__details">
-                                                    <h3 th:text="${review.account.getFullname()}"></h3>
-                                                    <div class="rev__meta d-flex justify-content-between">
-                                                        <span th:text="${review.getFormatDate()}"></span>
-                                                        <ul class="rating">
-                                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                    <p th:text="${review.comment}"></p>
-                                                </div>
-                                            </div>
-                                            <!-- End Single Review -->
-                                        </th:block>
-                                    </div>
                                 </div>
                                 <!-- End Single Content -->
                             </div>
@@ -158,84 +128,34 @@
                         </div>
                     </div>
                     <div class="row mt--30">
-                        <!-- Start Single Product -->
-                        <div class="col-lg-4 col-md-6 col-sm-12">
-                            <div class="beef_product">
-                                <div class="beef__thumb">
-                                    <a href="menu-details.html">
-                                        <img th:src="@{/resource/images/beef/1.jpg}" alt="beef images">
-                                    </a>
-                                </div>
-                                <div class="beef__hover__info">
-                                    <div class="beef__hover__inner">
-                                        <span>Special</span>
-                                        <span>offer</span>
+                        <th:block th:each="f : ${popularFoods}">
+                            <!-- Start Single Product -->
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="beef_product">
+                                    <div class="beef__thumb">
+                                        <a th:href="@{/detail/__${f.id}__}">
+                                            <img height="180px" th:src="${f.image}" alt="beef images">
+                                        </a>
                                     </div>
-                                </div>
-                                <div class="beef__details">
-                                    <h4><a href="menu-details.html">Beef Burger</a></h4>
-                                    <ul class="beef__prize">
-                                        <li class="old__prize">$30</li>
-                                        <li>$30</li>
-                                    </ul>
-                                    <p>erve armesan may be added to the top of apLem ip, consectetur</p>
-                                    <div class="beef__cart__btn">
-                                        <a href="cart.html">Add To Cart</a>
+                                    <div class="beef__hover__info">
+                                        <div class="beef__hover__inner">
+                                            <span>Special</span>
+                                            <span>offer</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Product -->
-                        <!-- Start Single Product -->
-                        <div class="col-lg-4 col-md-6 col-sm-12">
-                            <div class="beef_product">
-                                <div class="beef__thumb">
-                                    <a href="menu-details.html">
-                                        <img th:src="@{/resource/images/beef/2.jpg}" alt="beef images">
-                                    </a>
-                                </div>
-                                <div class="beef__details">
-                                    <h4><a href="menu-details.html">Beef Burger</a></h4>
-                                    <ul class="beef__prize">
-                                        <li class="old__prize">$30</li>
-                                        <li>$30</li>
-                                    </ul>
-                                    <p>erve armesan may be added to the top of apLem ip, consectetur</p>
-                                    <div class="beef__cart__btn">
-                                        <a href="cart.html">Add To Cart</a>
+                                    <div class="beef__details">
+                                        <h4><a href="menu-details.html" th:text="${f.name}"></a></h4>
+                                        <ul class="beef__prize">
+                                            <li th:text="'$' + ${f.price}"></li>
+                                        </ul>
+                                        <div class="beef__cart__btn">
+                                            <a th:href="@{/detail/__${f.id}__}">Add To Cart</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- End Single Product -->
-                        <!-- Start Single Product -->
-                        <div class="col-lg-4 col-md-6 col-sm-12">
-                            <div class="beef_product">
-                                <div class="beef__thumb">
-                                    <a href="menu-details.html">
-                                        <img th:src="@{/resource/images/beef/3.jpg}" alt="beef images">
-                                    </a>
-                                </div>
-                                <div class="beef__hover__info">
-                                    <div class="beef__hover__inner">
-                                        <span>Special</span>
-                                        <span>offer</span>
-                                    </div>
-                                </div>
-                                <div class="beef__details">
-                                    <h4><a href="menu-details.html">Beef Burger</a></h4>
-                                    <ul class="beef__prize">
-                                        <li class="old__prize">$30</li>
-                                        <li>$30</li>
-                                    </ul>
-                                    <p>erve armesan may be added to the top of apLem ip, consectetur</p>
-                                    <div class="beef__cart__btn">
-                                        <a href="cart.html">Add To Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Product -->
+                            <!-- End Single Product -->
+                        </th:block>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 md--mt--40 sm--mt--40">
@@ -249,75 +169,15 @@
                             </div>
                         </div>
                         <!-- End Search Area -->
-                        <!-- Start Recent Post -->
-                        <div class="food__recent__post mt--60">
-                            <h4 class="side__title">Recent Posts</h4>
-                            <div class="recent__post__wrap">
-                                <!-- Start Single Post -->
-                                <div class="single__recent__post d-flex">
-                                    <div class="recent__post__thumb">
-                                        <a href="blog-details.html">
-                                            <img th:src="@{/resource/images/blog/sm-img/4.jpg}" alt="post images">
-                                        </a>
-                                    </div>
-                                    <div class="recent__post__details">
-                                        <span>February  13,  2018</span>
-                                        <h4><a href="blog-details.html">Diffrent title gose here. This is demo title.</a></h4>
-                                    </div>
-                                </div>
-                                <!-- End Single Post -->
-                                <!-- Start Single Post -->
-                                <div class="single__recent__post d-flex">
-                                    <div class="recent__post__thumb">
-                                        <a href="blog-details.html">
-                                            <img th:src="@{/resource/images/blog/sm-img/5.jpg}" alt="post images">
-                                        </a>
-                                    </div>
-                                    <div class="recent__post__details">
-                                        <span>February  13,  2018</span>
-                                        <h4><a href="blog-details.html">Diffrent title gose here. This is demo title.</a></h4>
-                                    </div>
-                                </div>
-                                <!-- End Single Post -->
-                                <!-- Start Single Post -->
-                                <div class="single__recent__post d-flex">
-                                    <div class="recent__post__thumb">
-                                        <a href="blog-details.html">
-                                            <img th:src="@{/resource/images/blog/sm-img/6.jpg}" alt="post images">
-                                        </a>
-                                    </div>
-                                    <div class="recent__post__details">
-                                        <span>February  13,  2018</span>
-                                        <h4><a href="blog-details.html">Diffrent title gose here. This is demo title.</a></h4>
-                                    </div>
-                                </div>
-                                <!-- End Single Post -->
-                                <!-- Start Single Post -->
-                                <div class="single__recent__post d-flex">
-                                    <div class="recent__post__thumb">
-                                        <a href="blog-details.html">
-                                            <img th:src="@{/resource/images/blog/sm-img/7.jpg}" alt="post images">
-                                        </a>
-                                    </div>
-                                    <div class="recent__post__details">
-                                        <span>February  13,  2018</span>
-                                        <h4><a href="blog-details.html">Diffrent title gose here. This is demo title.</a></h4>
-                                    </div>
-                                </div>
-                                <!-- End Single Post -->
-                            </div>
-                        </div>
-                        <!-- End Recent Post -->
                         <!-- Start Category Area -->
                         <div class="food__category__area mt--60">
                             <h4 class="side__title">Categories</h4>
                             <ul class="food__category">
-                                <li><a href="#">Maxican Food <span>(20)</span></a></li>
-                                <li><a href="#">Pizza <span>(30)</span></a></li>
-                                <li><a href="#">Food & Beverage <span>(40)</span></a></li>
-                                <li><a href="#">Maxican Food <span>(50)</span></a></li>
-                                <li><a href="#">Asian Twist <span>(60)</span></a></li>
-                                <li><a href="#">Taco Food <span>(20)</span></a></li>
+                                <li><a href="/list/breakfast">Breakfast</a></li>
+                                <li><a href="/list/lunch">Lunch</a></li>
+                                <li><a href="/list/dinner">Dinner</a></li>
+                                <li><a href="/list/coffee">Coffee</a></li>
+                                <li><a href="/list/snacks">Snacks</a></li>
                             </ul>
                         </div>
                         <!-- End Category Area -->

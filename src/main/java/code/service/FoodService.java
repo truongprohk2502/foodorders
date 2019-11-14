@@ -1,14 +1,26 @@
 package code.service;
 
 import code.model.Food;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface FoodService {
 
-    public Food findById(Long id);
+    Food findById(Long id);
 
-    public List<Food> findRandomFoods();
+    List<Food> findRandomFoods(int num);
 
-    public List<Food> findFoodsByFoodType(String foodType);
+    List<Food> findFoodsByFoodType(String foodType, int num);
+
+    Page<Food> findUnlimitedFoodsByType(String type, Pageable pageable);
+
+    Page<Food> findFoodsByFoodName(String name, Pageable pageable);
+
+    Page<Food> findAll(Pageable pageable);
+
+    void deleteFoodById(Long id);
+
+    void save(Food food);
 }
